@@ -1,0 +1,32 @@
+.footer {
+    background-color: #6278f7;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 233px;
+}
+
+.footer .container-icons {
+    display: flex;
+    gap: 35px;
+}
+
+.footer .container-icons .icon-redes-sociais {
+   width: 35px;
+   height: 35px;
+   color: #FFFFFF;
+}
+
+.footer .logo-footer {
+    width: 166px;
+    height: 63px;
+}
+
+.footer h3 {
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 24px;
+    color: #FFFFFF;
+} 
+
