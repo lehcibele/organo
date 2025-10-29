@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Botao from '../Botao';
-import CampoTexto from '../CampoTexto';
+import Campo from '../Campo';
 import ListaSuspensa from '../ListaSuspensa';
 import './Formulario.css'
 
@@ -9,9 +9,9 @@ const Formulario = (props) => {
     const [nome, setNome] = useState('');
     const [cargo, setCargo] = useState('');
     const [imagem, setImagem] = useState('');
-    const [time, setTime] = useState('')
-
-
+    const [time, setTime] = useState('');
+    const [nomeTime, setNomeTime] = useState('');
+    const [corTime, setCorTime] = useState('');
 
     // Submisão do formulario
     const aoSalvar = (evento) => {
@@ -35,7 +35,8 @@ const Formulario = (props) => {
                 <h2>Preencha os dados para criar o card do colaborador</h2>
 
                 {/* obrigatorio = true é para deixar o campo sendo obrigatorio, no arquivo CampoTexto tem o required */}
-                <CampoTexto 
+                <Campo 
+                    type='text'
                     obrigatorio={true} 
                     label="Nome" 
                     placeholder="Digite seu nome"
@@ -43,7 +44,8 @@ const Formulario = (props) => {
                     aoAlterado={valor => setNome(valor)}
                 />
 
-                <CampoTexto 
+                <Campo
+                    type='text'
                     obrigatorio={true} 
                     label="Cargo" 
                     placeholder="Digite o seu cargo"
@@ -51,7 +53,8 @@ const Formulario = (props) => {
                     aoAlterado={valor => setCargo(valor)}
                 />
 
-                <CampoTexto 
+                <Campo
+                    type='text'
                     label="Imagem" 
                     placeholder="Digite o endereço da imagem"
                     valor={imagem}
@@ -67,6 +70,34 @@ const Formulario = (props) => {
                 />
 
                 <Botao texto="Criar Card" />
+            </form>
+
+            <form onSubmit={(evento) => {
+                evento.preventDefault();
+                props.cadastrarTime({nome: nomeTime, cor: corTime})
+            }}>
+                <h2>Preencha os dados para criar um novo time</h2>
+
+                {/* obrigatorio = true é para deixar o campo sendo obrigatorio, no arquivo CampoTexto tem o required */}
+                <Campo
+                    type='text'
+                    obrigatorio={true} 
+                    label="Nome" 
+                    placeholder="Digite o nome do time"
+                    valor={nomeTime}
+                    aoAlterado={valor => setNomeTime(valor)}
+                />
+
+                <Campo
+                    type='color'
+                    obrigatorio={true} 
+                    label="Cor" 
+                    placeholder="Digite a cor do time"
+                    valor={corTime}
+                    aoAlterado={valor => setCorTime(valor)}
+                />
+
+                <Botao texto="Criar um novo time" />
             </form>
         </section>
     )

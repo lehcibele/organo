@@ -1,15 +1,27 @@
 import Colaborador from '../Colaborador';
+import hexToRgba from 'hex-to-rgba';
 import './Time.css'
 
-const Time = (props) => {
+const Time = ({time, colaboradores, aoDeletar, mudarCor, aoFavoritar}) => {
 
-    const estilo = { backgroundColor: props.corSecundaria }
+    const estilo = { backgroundColor: hexToRgba(time.cor, '0.6') }
     // renderização condicional -> se a lista de colaboradores tiver vázia não mostra nada, se tiver um elemento é mostrado esse elemento do time
     return(
-        (props.colaboradores.length > 0) ? <section className='time' style={estilo}>
-            <h3 style={{borderColor: props.corPrimaria}}>{props.nome}</h3>
+        (colaboradores.length > 0) ? <section className='time' style={estilo}>
+            <input onChange={evento => mudarCor(evento.target.value, time.id)} value={time.cor} type='color' className='input-cor' />
+            <h3 style={{borderColor: time.cor}}>{time.nome}</h3>
             <div className='colaboradores'>
-                {props.colaboradores.map(colaborador => <Colaborador key={colaborador.nome} corDeFundo={props.corPrimaria} nome={colaborador.nome} cargo={colaborador.cargo} imagem={colaborador.imagem}/>)}
+                {colaboradores.map((colaborador, indice) => {
+                    return (
+                        <Colaborador 
+                            key={indice} 
+                            colaborador={colaborador} 
+                            corDeFundo={time.cor} 
+                            aoDeletar={aoDeletar} 
+                            aoFavoritar={aoFavoritar}
+                        />
+                    );
+                })}
             </div>
         </section>
         : ''

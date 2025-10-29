@@ -1,6 +1,6 @@
-import './CampoTexto.css'
+import './Campo.css'
 
-const CampoTexto = (props) => {
+const Campo = (props) => {
 
     const aoDigitado = (evento) => {
         // target -> evento do js
@@ -12,17 +12,23 @@ const CampoTexto = (props) => {
     }
 
     return (
-        <div className="campo-texto">
+        <div className={`campo campo-${props.type}`}>
             <label>
                 {props.label}
             </label>
 
             {/* required deixa o campo obrigatorio se obrigatorio for true, isso vem do arquivo index.js (Formulario) */}
-            <input value={props.valor} onChange={aoDigitado} required={props.obrigatorio} placeholder={props.placeholder} />
+            <input 
+                value={props.valor} 
+                onChange={aoDigitado} 
+                required={props.obrigatorio} 
+                placeholder={props.placeholder}
+                type={props.type}
+            />
 
             {/* onChange quando o input for alterado pelo usuario vai ser executado uma função */}
         </div>
     );
 }
 
-export default CampoTexto;
+export default Campo;
